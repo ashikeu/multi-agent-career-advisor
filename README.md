@@ -21,27 +21,38 @@ Each agent uses specific tools and datasets (real or dummy), and works together 
 ```bash
 pip install -r requirements.txt
 ```
+2. Install the Agents SDK
+pip install openai-agents 
 
-2. Create the venv:
-
+3. Create the venv:
 python -m venv venv
 
-Activate Virtual Environment
+4. Activate Virtual Environment
 
 venv\Scripts\activate
 
-3. Create a `.env` file with your OpenAI API key:
+5. Create a `.env` file with your OpenAI API key:
 
 ```
-BASE_URL="https://models.github.ai/inference/v1"
-API_KEY="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"
-MODEL_NAME="openai/gpt-4.1-nano"
+BASE_URL="https://api.openai.com/v1"
+API_KEY="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"  
+MODEL_NAME="gpt-4o"
+
 ```
 
 ## Running the Examples
 
 ```bash
 python carrear_mate.py
+```
+
+## Running the Streamlit
+Install streamlit
+
+pip install streamlit
+
+```bash
+streamlit run app.py
 ```
 
 
