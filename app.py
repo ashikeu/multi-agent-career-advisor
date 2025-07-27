@@ -8,53 +8,92 @@ from carrear_mate import (
     CourseRecommendationsResponse
 )
 
+# ---- PAGE CONFIG ----
 st.set_page_config(page_title="CareerMate", layout="centered")
 
+# ---- TITLE ----
 st.title("💼 CareerMate – Multi-Agent Career Advisor")
-st.markdown("Ask anything related to your career path, job search, or skill gaps.")
+st.markdown("Helping you plan and grow your career intelligently 🚀")
 
-# Session state to keep history (optional)
+
+# ---- THEME DETECTION ----
+def inject_theme_css():
+    css = """
+    <style>
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+        html, body, [class*="css"]  {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+    """
+    st.markdown(css, unsafe_allow_html=True)
+
+inject_theme_css()
+
+# ---- GOAL SELECTOR ----
+goal = st.selectbox(
+    "🎯 What is your current goal?",
+    [
+        "Explore new career options",
+        "Identify skills for a job",
+        "Find matching jobs",
+        "Get course recommendations",
+        "Just browsing"
+    ],
+    index=1,
+)
+
+# ---- CHAT HISTORY STATE ----
 if "history" not in st.session_state:
     st.session_state.history = []
 
-# Text input from user
-user_input = st.text_input("💬 Ask CareerMate...", placeholder="e.g., What skills do I need to become a data scientist?")
+# ---- SHOW CHAT HISTORY ----
+for role, message in st.session_state.history:
+    with st.chat_message(role.lower()):
+        st.markdown(message)
 
-if st.button("Ask"):
-    if user_input.strip():
-        st.session_state.history.append(("You", user_input))
-        st.write("🤖 CareerMate is thinking...")
+# ---- USER INPUT ----
+user_input = st.chat_input("Ask CareerMate something...")
 
-        async def run_agent():
-            result = await Runner.run(conversation_agent, user_input)
-            return result.final_output
+if user_input:
+    # Show user message
+    st.session_state.history.append(("You", user_input))
+    with st.chat_message("user"):
+        st.markdown(user_input)
 
-        # Run async function inside Streamlit
-        output = asyncio.run(run_agent())
+    with st.chat_message("assistant"):
+        with st.spinner("CareerMate is thinking..."):
+            async def run_agent():
+                result = await Runner.run(conversation_agent, user_input)
+                return result.final_output
 
-        # Display based on agent type
-        if isinstance(output, MissingSkillsResponse):
-            st.subheader("🛠 Missing Skills:")
-            for skill in output.missing_skills:
-                st.markdown(f"- {skill}")
+            output = asyncio.run(run_agent())
 
-        elif isinstance(output, JobFinderResponse):
-            st.subheader("💼 Matching Jobs:")
-            for job in output.jobs:
-                st.markdown(f"**🔹 {job.title}** at *{job.company}* ({job.location})")
-                st.markdown("Required Skills:")
-                for skill in job.skills:
-                    st.markdown(f"- {skill}")
-                st.markdown("---")
+            # Build assistant response
+            if isinstance(output, MissingSkillsResponse):
+                response_md = "### 🛠 Missing Skills:\n" + "\n".join(f"- {skill}" for skill in output.missing_skills)
 
-        elif isinstance(output, CourseRecommendationsResponse):
-            st.subheader("📚 Course Recommendations:")
-            for skill_course in output.recommendations:
-                st.markdown(f"**Skill:** {skill_course.skill}")
-                for course in skill_course.courses:
-                    st.markdown(f"• [{course.title}]({course.link}) on {course.platform}")
-                st.markdown("---")
+            elif isinstance(output, JobFinderResponse):
+                response_md = "### 💼 Matching Jobs:\n"
+                for job in output.jobs:
+                    response_md += f"**🔹 {job.title}** at *{job.company}* ({job.location})\n"
+                    response_md += "Required Skills:\n"
+                    response_md += "\n".join(f"- {skill}" for skill in job.skills)
+                    response_md += "\n---\n"
 
-        else:
-            st.error("CareerMate couldn't process your request. Please try again.")
+            elif isinstance(output, CourseRecommendationsResponse):
+                response_md = "### 📚 Course Recommendations:\n"
+                for skill_course in output.recommendations:
+                    response_md += f"**Skill:** {skill_course.skill}\n"
+                    for course in skill_course.courses:
+                        response_md += f"• [{course.title}]({course.link}) on {course.platform}\n"
+                    response_md += "---\n"
 
+            else:
+                response_md = "⚠️ CareerMate couldn't process your request. Please try again."
+
+            st.markdown(response_md)
+            st.session_state.history.append(("Assistant", response_md))

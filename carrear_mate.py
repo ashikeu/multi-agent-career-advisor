@@ -50,45 +50,109 @@ class CourseRecommendationsResponse(BaseModel):
 
 JOB_SKILLS = {
     "data scientist": ["Python", "SQL", "Statistics", "Machine Learning", "Pandas"],
-    "data analyst": ["Excel", "SQL", "Tableau", "Statistics"],
-    "software engineer": ["Python", "Algorithms", "Data Structures", "Git"],
-    "web developer": ["HTML", "CSS", "JavaScript", "React"],
-    "frontend developer": ["HTML", "CSS", "JavaScript", "Vue.js"],
-    "backend developer": ["Node.js", "MongoDB", "REST APIs", "Express.js"],
-    "machine learning engineer": ["Python", "TensorFlow", "Scikit-learn", "Numpy"],
-    "ai researcher": ["Deep Learning", "PyTorch", "Python", "Research Skills"],
-    "data engineer": ["SQL", "Spark", "Airflow", "ETL Pipelines"],
-    "devops engineer": ["Docker", "Kubernetes", "CI/CD", "Linux"],
-    "product manager": ["Agile", "Wireframing", "Communication", "JIRA"],
-    "mobile app developer": ["Flutter", "Dart", "Firebase", "UI Design"],
-    "cloud engineer": ["AWS", "Terraform", "Docker", "Networking"],
-    "business analyst": ["Excel", "SQL", "Power BI", "Stakeholder Communication"],
-    "cybersecurity analyst": ["Network Security", "SIEM", "Python", "Incident Response"],
-    "systems analyst": ["Systems Design", "UML", "SQL", "Documentation"],
-    "full stack developer": ["JavaScript", "React", "Node.js", "SQL"],
-    "database administrator": ["SQL", "Oracle", "Backup and Recovery", "Performance Tuning"],
-    "qa engineer": ["Test Cases", "Selenium", "JIRA", "Automation Testing"],
-    "computer vision engineer": ["OpenCV", "Deep Learning", "Python", "Image Processing"]
+    "data analyst": ["Excel", "SQL", "Tableau", "Power BI", "Statistics"],
+    "software engineer": ["Python", "Java", "Algorithms", "Data Structures", "Git"],
+    "web developer": ["HTML", "CSS", "JavaScript", "React", "Node.js"],
+    "mobile app developer": ["Flutter", "React Native", "Dart", "Kotlin", "Swift"],
+    "backend developer": ["Node.js", "Express", "MongoDB", "SQL", "REST APIs"],
+    "frontend developer": ["HTML", "CSS", "JavaScript", "React", "Vue.js"],
+    "cloud engineer": ["AWS", "Azure", "Docker", "Kubernetes", "Terraform"],
+    "devops engineer": ["CI/CD", "Jenkins", "GitLab", "Docker", "Kubernetes"],
+    "machine learning engineer": ["Python", "TensorFlow", "PyTorch", "ML Algorithms", "Data Processing"],
+    "AI engineer": ["Deep Learning", "NLP", "Computer Vision", "Python", "Transformers"],
+    "database administrator": ["SQL", "Oracle", "PostgreSQL", "Backup & Recovery", "Performance Tuning"],
+    "network engineer": ["TCP/IP", "Routing", "Switching", "Firewalls", "Cisco"],
+    "cybersecurity analyst": ["Firewalls", "Network Security", "SIEM", "Ethical Hacking", "Incident Response"],
+    "product manager": ["Agile", "Scrum", "Roadmapping", "Wireframing", "Stakeholder Management"],
+    "project manager": ["Project Planning", "Risk Management", "MS Project", "Agile", "Scrum"],
+    "UI/UX designer": ["Figma", "Adobe XD", "User Research", "Prototyping", "Design Thinking"],
+    "graphic designer": ["Photoshop", "Illustrator", "InDesign", "Branding", "Typography"],
+    "business analyst": ["Requirement Gathering", "SQL", "Stakeholder Communication", "Process Modeling", "Excel"],
+    "QA tester": ["Manual Testing", "Selenium", "JIRA", "Bug Tracking", "Test Automation"],
+    "game developer": ["Unity", "C#", "Unreal Engine", "Game Design", "3D Modeling"],
+    "embedded systems engineer": ["C", "C++", "Microcontrollers", "RTOS", "I2C/SPI"],
+    "AI researcher": ["Deep Learning", "Research Writing", "Python", "Reinforcement Learning", "Mathematical Modeling"],
+    "blockchain developer": ["Solidity", "Ethereum", "Smart Contracts", "Web3.js", "Cryptography"],
+    "full stack developer": ["JavaScript", "React", "Node.js", "MongoDB", "Express.js"],
+    "systems analyst": ["Systems Design", "SQL", "Testing", "Documentation", "Communication"],
+    "IT support specialist": ["Windows", "Troubleshooting", "Helpdesk", "Networking", "Customer Service"],
+    "digital marketer": ["SEO", "Google Analytics", "Social Media", "Email Marketing", "Content Creation"],
+    "content writer": ["SEO Writing", "Blogging", "Copywriting", "Grammar", "Editing"],
+    "HR manager": ["Recruiting", "HRIS", "Employee Relations", "Onboarding", "Compliance"],
+    "accountant": ["Tally", "Excel", "Bookkeeping", "Taxation", "QuickBooks"],
+    "financial analyst": ["Excel", "Forecasting", "Budgeting", "SQL", "Financial Modeling"],
+    "civil engineer": ["AutoCAD", "Structural Design", "Surveying", "Construction Management", "Estimation"],
+    "mechanical engineer": ["SolidWorks", "Thermodynamics", "CAD", "ANSYS", "Manufacturing Processes"],
+    "electrical engineer": ["MATLAB", "Circuit Design", "Power Systems", "PLC", "Control Systems"],
+    "biomedical engineer": ["Medical Devices", "Regulatory Compliance", "Signal Processing", "Bioinformatics", "LabVIEW"],
+    "chemical engineer": ["Process Engineering", "Simulations", "Heat Transfer", "CHEMCAD", "Safety Standards"],
+    "civil draftsman": ["AutoCAD", "Construction Drawings", "Survey Layout", "Blueprint Reading", "SketchUp"],
+    "teacher": ["Lesson Planning", "Classroom Management", "Assessment", "Subject Knowledge", "Communication"],
+    "sales executive": ["CRM", "Negotiation", "Lead Generation", "Customer Relationship", "Target Achievement"],
+    "customer service rep": ["Communication", "CRM Tools", "Problem Solving", "Multitasking", "Patience"],
+    "legal advisor": ["Legal Research", "Drafting", "Litigation", "Contract Law", "Negotiation"],
+    "medical assistant": ["Vital Signs", "Patient Records", "Phlebotomy", "Clinical Procedures", "Medical Terminology"],
+    "nurse": ["Patient Care", "IV Insertion", "EMR", "Medication Administration", "CPR"],
+    "pharmacist": ["Prescription Review", "Pharmacology", "Drug Dispensing", "Inventory", "Patient Counseling"],
+    "architect": ["AutoCAD", "SketchUp", "Design Principles", "Building Codes", "3D Modeling"],
+    "interior designer": ["Space Planning", "AutoCAD", "Color Theory", "Material Selection", "Budget Management"],
+    "logistics manager": ["Supply Chain", "Inventory", "Shipping", "ERP Systems", "Vendor Management"],
+    "event planner": ["Budgeting", "Vendor Coordination", "Scheduling", "Marketing", "Creativity"],
 }
+
 
 
 JOB_LISTINGS = [
     {"title": "Junior Data Scientist", "company": "DataCorp", "location": "New York", "skills": ["Python", "SQL", "Machine Learning"]},
-    {"title": "Data Analyst", "company": "Analytics LLC", "location": "San Francisco", "skills": ["Excel", "SQL", "Tableau"]},
-    {"title": "Software Engineer", "company": "TechSoft", "location": "Remote", "skills": ["Python", "Git", "Data Structures"]},
-    {"title": "Frontend Developer", "company": "WebWorks", "location": "Boston", "skills": ["HTML", "CSS", "JavaScript"]},
-    {"title": "Machine Learning Engineer", "company": "AI Labs", "location": "Seattle", "skills": ["Python", "TensorFlow", "Data Preprocessing"]},
-    {"title": "Business Intelligence Analyst", "company": "Insight Co", "location": "Chicago", "skills": ["SQL", "Power BI", "Excel"]},
-    {"title": "Backend Developer", "company": "CodeBase", "location": "Austin", "skills": ["Node.js", "MongoDB", "APIs"]},
-    {"title": "DevOps Engineer", "company": "Cloudify", "location": "Remote", "skills": ["Docker", "Kubernetes", "CI/CD"]},
-    {"title": "Product Manager", "company": "StartupX", "location": "Los Angeles", "skills": ["Agile", "Roadmapping", "Communication"]},
-    {"title": "Full Stack Developer", "company": "Buildify", "location": "Denver", "skills": ["React", "Node.js", "SQL"]},
-    {"title": "AI Researcher", "company": "DeepThink", "location": "Boston", "skills": ["Deep Learning", "Python", "PyTorch"]},
-    {"title": "Data Engineer", "company": "DataFlow Inc.", "location": "New York", "skills": ["Spark", "Airflow", "SQL"]},
-    {"title": "Mobile App Developer", "company": "Appify", "location": "San Diego", "skills": ["Flutter", "Dart", "Firebase"]},
-    {"title": "Cybersecurity Analyst", "company": "SecureNet", "location": "Dallas", "skills": ["Networking", "SIEM", "Python"]},
-    {"title": "Systems Analyst", "company": "IT Solutions", "location": "Philadelphia", "skills": ["Systems Design", "SQL", "UML"]}
+    {"title": "Software Engineer", "company": "TechNova", "location": "San Francisco", "skills": ["Java", "Spring Boot", "Git"]},
+    {"title": "Data Analyst", "company": "Insights Inc", "location": "Chicago", "skills": ["Excel", "SQL", "Power BI"]},
+    {"title": "Frontend Developer", "company": "WebWorks", "location": "Austin", "skills": ["HTML", "CSS", "React"]},
+    {"title": "Backend Developer", "company": "CodeBase", "location": "Seattle", "skills": ["Node.js", "Express", "MongoDB"]},
+    {"title": "Full Stack Developer", "company": "DevStudio", "location": "Remote", "skills": ["React", "Node.js", "PostgreSQL"]},
+    {"title": "UI/UX Designer", "company": "DesignEdge", "location": "Boston", "skills": ["Figma", "User Research", "Prototyping"]},
+    {"title": "DevOps Engineer", "company": "CloudCore", "location": "Denver", "skills": ["Docker", "Kubernetes", "CI/CD"]},
+    {"title": "Mobile App Developer", "company": "Appify", "location": "Los Angeles", "skills": ["Flutter", "Dart", "Firebase"]},
+    {"title": "Cloud Engineer", "company": "SkyNet", "location": "San Jose", "skills": ["AWS", "Terraform", "Python"]},
+    {"title": "Cybersecurity Analyst", "company": "SecureTech", "location": "Atlanta", "skills": ["SIEM", "Firewalls", "Ethical Hacking"]},
+    {"title": "AI Engineer", "company": "NeuroNet", "location": "New York", "skills": ["Deep Learning", "NLP", "TensorFlow"]},
+    {"title": "Machine Learning Engineer", "company": "AlgoWorks", "location": "Remote", "skills": ["Scikit-learn", "XGBoost", "Python"]},
+    {"title": "QA Tester", "company": "TestLogic", "location": "Dallas", "skills": ["Selenium", "Manual Testing", "JIRA"]},
+    {"title": "Business Analyst", "company": "BizBridge", "location": "Philadelphia", "skills": ["SQL", "Requirement Gathering", "Excel"]},
+    {"title": "Project Manager", "company": "ManageRight", "location": "Houston", "skills": ["Agile", "Scrum", "MS Project"]},
+    {"title": "Product Manager", "company": "ProdVision", "location": "San Diego", "skills": ["Roadmaps", "Wireframes", "Scrum"]},
+    {"title": "Graphic Designer", "company": "PixelPerfect", "location": "Miami", "skills": ["Photoshop", "Illustrator", "Branding"]},
+    {"title": "Database Administrator", "company": "DataKeepers", "location": "Phoenix", "skills": ["PostgreSQL", "Backups", "SQL Tuning"]},
+    {"title": "Network Engineer", "company": "NetFlow", "location": "Charlotte", "skills": ["TCP/IP", "Cisco", "Firewalls"]},
+    {"title": "Content Writer", "company": "WritePro", "location": "Remote", "skills": ["SEO", "Blogging", "Grammar"]},
+    {"title": "Digital Marketer", "company": "AdSync", "location": "Orlando", "skills": ["SEO", "Google Ads", "Analytics"]},
+    {"title": "Sales Executive", "company": "SellFast", "location": "Houston", "skills": ["CRM", "Lead Generation", "Negotiation"]},
+    {"title": "Customer Support Specialist", "company": "HelpMate", "location": "Remote", "skills": ["Communication", "Zendesk", "Patience"]},
+    {"title": "Financial Analyst", "company": "FinSight", "location": "New York", "skills": ["Excel", "Budgeting", "Forecasting"]},
+    {"title": "HR Manager", "company": "PeoplePros", "location": "Chicago", "skills": ["Recruitment", "Onboarding", "Compliance"]},
+    {"title": "Accounting Assistant", "company": "BookKeepers Inc", "location": "Los Angeles", "skills": ["Tally", "Tax Filing", "Excel"]},
+    {"title": "Embedded Systems Engineer", "company": "EmbedCore", "location": "San Jose", "skills": ["C", "Microcontrollers", "RTOS"]},
+    {"title": "Legal Advisor", "company": "LawTech", "location": "Washington, D.C.", "skills": ["Contract Law", "Litigation", "Legal Drafting"]},
+    {"title": "Civil Engineer", "company": "BuildMax", "location": "Denver", "skills": ["AutoCAD", "Surveying", "Construction Management"]},
+    {"title": "Mechanical Engineer", "company": "MechaWorks", "location": "Detroit", "skills": ["SolidWorks", "Thermodynamics", "CAD"]},
+    {"title": "Electrical Engineer", "company": "VoltPro", "location": "Austin", "skills": ["Circuit Design", "MATLAB", "PLC"]},
+    {"title": "Biomedical Engineer", "company": "BioMedix", "location": "Boston", "skills": ["Signal Processing", "Medical Devices", "LabVIEW"]},
+    {"title": "Event Planner", "company": "Eventix", "location": "Las Vegas", "skills": ["Scheduling", "Coordination", "Budgeting"]},
+    {"title": "Logistics Manager", "company": "ShipQuick", "location": "Atlanta", "skills": ["Supply Chain", "Inventory", "ERP"]},
+    {"title": "Architect", "company": "DesignArc", "location": "San Francisco", "skills": ["SketchUp", "AutoCAD", "3D Modeling"]},
+    {"title": "Interior Designer", "company": "DecoSpace", "location": "New York", "skills": ["Color Theory", "Space Planning", "CAD"]},
+    {"title": "Blockchain Developer", "company": "BlockForge", "location": "Remote", "skills": ["Solidity", "Smart Contracts", "Web3.js"]},
+    {"title": "Game Developer", "company": "Funverse", "location": "Seattle", "skills": ["Unity", "C#", "Game Design"]},
+    {"title": "Teacher", "company": "EduWorld", "location": "Dallas", "skills": ["Lesson Planning", "Assessment", "Classroom Management"]},
+    {"title": "Research Assistant", "company": "ThinkLab", "location": "Boston", "skills": ["SPSS", "Literature Review", "Data Analysis"]},
+    {"title": "Video Editor", "company": "ClipWorks", "location": "Los Angeles", "skills": ["Adobe Premiere", "After Effects", "Color Grading"]},
+    {"title": "SEO Specialist", "company": "RankRocket", "location": "Remote", "skills": ["SEO Audit", "Link Building", "Keyword Research"]},
+    {"title": "IT Support Technician", "company": "TechHelp", "location": "Charlotte", "skills": ["Windows", "Troubleshooting", "Networking"]},
+    {"title": "Animator", "company": "MotionPixel", "location": "San Diego", "skills": ["Maya", "3D Animation", "Rigging"]},
+    {"title": "E-commerce Manager", "company": "ShopifyPro", "location": "Remote", "skills": ["Shopify", "Analytics", "Inventory Management"]},
+    {"title": "Technical Writer", "company": "DocuTech", "location": "Seattle", "skills": ["Documentation", "Markdown", "Technical Diagrams"]},
+    {"title": "AI Researcher", "company": "DeepMinds", "location": "Palo Alto", "skills": ["Reinforcement Learning", "Research Writing", "Python"]},
 ]
+
 
 
 COURSES = {
@@ -106,16 +170,14 @@ COURSES = {
     ],
     "SQL": [
         {
-            "title": "SQL Basics",
-            "platform": "Codecademy",
-            "link": "https://codecademy.com/sql"
-        }
-    ],
-    "Statistics": [
+            "title": "The Complete SQL Bootcamp",
+            "platform": "Udemy",
+            "link": "https://udemy.com/sql-bootcamp"
+        },
         {
-            "title": "Intro to Statistics",
-            "platform": "Khan Academy",
-            "link": "https://khanacademy.org/statistics"
+            "title": "Databases and SQL for Data Science",
+            "platform": "Coursera",
+            "link": "https://coursera.org/sql"
         }
     ],
     "Machine Learning": [
@@ -123,51 +185,303 @@ COURSES = {
             "title": "Machine Learning by Andrew Ng",
             "platform": "Coursera",
             "link": "https://coursera.org/ml"
-        }
-    ],
-    "Pandas": [
+        },
         {
-            "title": "Data Analysis with Pandas",
-            "platform": "DataCamp",
-            "link": "https://datacamp.com/pandas"
-        }
-    ],
-    "Excel": [
-        {
-            "title": "Excel Essentials",
-            "platform": "LinkedIn Learning",
-            "link": "https://linkedin.com/learning/excel"
-        }
-    ],
-    "Tableau": [
-        {
-            "title": "Getting Started with Tableau",
+            "title": "Python for Machine Learning",
             "platform": "Udemy",
-            "link": "https://udemy.com/tableau"
-        }
-    ],
-    "Git": [
-        {
-            "title": "Git Fundamentals",
-            "platform": "Pluralsight",
-            "link": "https://pluralsight.com/git"
-        }
-    ],
-    "JavaScript": [
-        {
-            "title": "JavaScript Basics",
-            "platform": "FreeCodeCamp",
-            "link": "https://freecodecamp.org/js"
+            "link": "https://udemy.com/ml-python"
         }
     ],
     "React": [
         {
-            "title": "React for Beginners",
+            "title": "React - The Complete Guide",
             "platform": "Udemy",
-            "link": "https://udemy.com/react-for-beginners"
+            "link": "https://udemy.com/react-guide"
+        },
+        {
+            "title": "Modern React with Redux",
+            "platform": "Udemy",
+            "link": "https://udemy.com/react-redux"
+        }
+    ],
+    "JavaScript": [
+        {
+            "title": "JavaScript: Understanding the Weird Parts",
+            "platform": "Udemy",
+            "link": "https://udemy.com/js-weird"
+        },
+        {
+            "title": "JavaScript for Beginners",
+            "platform": "Coursera",
+            "link": "https://coursera.org/js"
+        }
+    ],
+    "HTML": [
+        {
+            "title": "HTML Fundamentals",
+            "platform": "Coursera",
+            "link": "https://coursera.org/html"
+        },
+        {
+            "title": "Build Responsive Websites with HTML",
+            "platform": "LinkedIn Learning",
+            "link": "https://linkedin.com/learning/html"
+        }
+    ],
+    "CSS": [
+        {
+            "title": "CSS - The Complete Guide",
+            "platform": "Udemy",
+            "link": "https://udemy.com/css-complete"
+        },
+        {
+            "title": "Advanced Styling with CSS",
+            "platform": "Coursera",
+            "link": "https://coursera.org/css"
+        }
+    ],
+    "Data Structures": [
+        {
+            "title": "Master the Coding Interview: Data Structures + Algorithms",
+            "platform": "Udemy",
+            "link": "https://udemy.com/ds-algo"
+        },
+        {
+            "title": "Data Structures and Algorithms Specialization",
+            "platform": "Coursera",
+            "link": "https://coursera.org/dsa"
+        }
+    ],
+    "Statistics": [
+        {
+            "title": "Intro to Statistics",
+            "platform": "Udacity",
+            "link": "https://udacity.com/statistics"
+        },
+        {
+            "title": "Basic Statistics",
+            "platform": "Coursera",
+            "link": "https://coursera.org/statistics"
+        }
+    ],
+    "Excel": [
+        {
+            "title": "Excel Skills for Business",
+            "platform": "Coursera",
+            "link": "https://coursera.org/excel"
+        },
+        {
+            "title": "Microsoft Excel - Excel from Beginner to Advanced",
+            "platform": "Udemy",
+            "link": "https://udemy.com/excel"
+        }
+    ],
+    "Power BI": [
+        {
+            "title": "Getting Started with Power BI",
+            "platform": "Coursera",
+            "link": "https://coursera.org/powerbi"
+        },
+        {
+            "title": "Microsoft Power BI - A Complete Introduction",
+            "platform": "Udemy",
+            "link": "https://udemy.com/powerbi"
+        }
+    ],
+    "Pandas": [
+        {
+            "title": "Data Analysis with Pandas and Python",
+            "platform": "Udemy",
+            "link": "https://udemy.com/pandas"
+        },
+        {
+            "title": "Pandas for Data Analysis in Python",
+            "platform": "Coursera",
+            "link": "https://coursera.org/pandas"
+        }
+    ],
+    "Git": [
+        {
+            "title": "Git and GitHub for Beginners",
+            "platform": "Udemy",
+            "link": "https://udemy.com/git-github"
+        },
+        {
+            "title": "Version Control with Git",
+            "platform": "Coursera",
+            "link": "https://coursera.org/git"
+        }
+    ],
+    "Linux": [
+        {
+            "title": "Linux Command Line Basics",
+            "platform": "Coursera",
+            "link": "https://coursera.org/linux"
+        },
+        {
+            "title": "Linux for Beginners",
+            "platform": "Udemy",
+            "link": "https://udemy.com/linux"
+        }
+    ],
+    "AWS": [
+        {
+            "title": "AWS Certified Solutions Architect – Associate",
+            "platform": "Udemy",
+            "link": "https://udemy.com/aws"
+        },
+        {
+            "title": "AWS Fundamentals",
+            "platform": "Coursera",
+            "link": "https://coursera.org/aws"
+        }
+    ],
+    "Docker": [
+        {
+            "title": "Docker Mastery",
+            "platform": "Udemy",
+            "link": "https://udemy.com/docker"
+        },
+        {
+            "title": "Getting Started with Docker",
+            "platform": "Pluralsight",
+            "link": "https://pluralsight.com/docker"
+        }
+    ],
+    "Kubernetes": [
+        {
+            "title": "Learn Kubernetes",
+            "platform": "Udemy",
+            "link": "https://udemy.com/kubernetes"
+        },
+        {
+            "title": "Architecting with Kubernetes",
+            "platform": "Coursera",
+            "link": "https://coursera.org/kubernetes"
+        }
+    ],
+    "TensorFlow": [
+        {
+            "title": "Introduction to TensorFlow",
+            "platform": "Coursera",
+            "link": "https://coursera.org/tensorflow"
+        },
+        {
+            "title": "TensorFlow Developer Certificate in 2024",
+            "platform": "Udemy",
+            "link": "https://udemy.com/tensorflow"
+        }
+    ],
+    "PyTorch": [
+        {
+            "title": "Deep Learning with PyTorch",
+            "platform": "Coursera",
+            "link": "https://coursera.org/pytorch"
+        },
+        {
+            "title": "PyTorch for Deep Learning",
+            "platform": "Udemy",
+            "link": "https://udemy.com/pytorch"
+        }
+    ],
+    "NLP": [
+        {
+            "title": "Natural Language Processing with Classification and Vector Spaces",
+            "platform": "Coursera",
+            "link": "https://coursera.org/nlp"
+        },
+        {
+            "title": "NLP with Python for Machine Learning",
+            "platform": "Udemy",
+            "link": "https://udemy.com/nlp"
+        }
+    ],
+    "Flutter": [
+        {
+            "title": "Flutter & Dart - The Complete Guide",
+            "platform": "Udemy",
+            "link": "https://udemy.com/flutter"
+        },
+        {
+            "title": "Build Native Mobile Apps with Flutter",
+            "platform": "Coursera",
+            "link": "https://coursera.org/flutter"
+        }
+    ],
+    "React Native": [
+        {
+            "title": "React Native - The Practical Guide",
+            "platform": "Udemy",
+            "link": "https://udemy.com/react-native"
+        },
+        {
+            "title": "Multiplatform Mobile App Development with React Native",
+            "platform": "Coursera",
+            "link": "https://coursera.org/react-native"
+        }
+    ],
+    "Java": [
+        {
+            "title": "Java Programming Masterclass",
+            "platform": "Udemy",
+            "link": "https://udemy.com/java"
+        },
+        {
+            "title": "Java for Beginners",
+            "platform": "Coursera",
+            "link": "https://coursera.org/java"
+        }
+    ],
+    "C++": [
+        {
+            "title": "Beginning C++ Programming",
+            "platform": "Udemy",
+            "link": "https://udemy.com/cplusplus"
+        },
+        {
+            "title": "C++ for Programmers",
+            "platform": "Coursera",
+            "link": "https://coursera.org/cplusplus"
+        }
+    ],
+    "Node.js": [
+        {
+            "title": "The Complete Node.js Developer Course",
+            "platform": "Udemy",
+            "link": "https://udemy.com/nodejs"
+        },
+        {
+            "title": "Server-side Development with Node.js",
+            "platform": "Coursera",
+            "link": "https://coursera.org/nodejs"
+        }
+    ],
+    "MongoDB": [
+        {
+            "title": "MongoDB for Beginners",
+            "platform": "Udemy",
+            "link": "https://udemy.com/mongodb"
+        },
+        {
+            "title": "MongoDB Basics",
+            "platform": "MongoDB University",
+            "link": "https://university.mongodb.com"
+        }
+    ],
+    "Figma": [
+        {
+            "title": "Learn Figma - UI/UX Design",
+            "platform": "Udemy",
+            "link": "https://udemy.com/figma"
+        },
+        {
+            "title": "UI/UX Design with Figma",
+            "platform": "Coursera",
+            "link": "https://coursera.org/figma"
         }
     ]
 }
+
 
 
 # ------------ Tools -------------
@@ -195,17 +509,6 @@ def find_jobs(user_skills: List[str], location: Optional[str] = None) -> JobFind
     return JobFinderResponse(jobs=matching_jobs)
 
 
-
-# @function_tool
-# def recommend_courses(missing_skills: List[str]) -> CourseRecommendationsResponse:
-#     """Recommend courses for each missing skill."""
-#     recommendations = {}
-#     for skill in missing_skills:
-#         courses = COURSES.get(skill, [])
-#         course_models = [Course(**course) for course in courses]
-#         if course_models:
-#             recommendations[skill] = course_models
-#     return CourseRecommendationsResponse(recommendations=recommendations)
 
 @function_tool
 def recommend_courses(missing_skills: List[str]) -> CourseRecommendationsResponse:
@@ -257,27 +560,18 @@ course_recommender_agent = Agent(
 )
 
 
-# conversation_agent = Agent(
-#     name="Conversation Agent",
-#     instructions="""...""",
-#     model=OpenAIChatCompletionsModel(model=MODEL_NAME, openai_client=client),
-#     handoffs=[skill_gap_agent, job_finder_agent, course_recommender_agent],
-#     # ✅ REMOVE THIS LINE:
-#     # output_type=object,
-# )
-
 
 conversation_agent = Agent(
     name="Conversation Agent",
    instructions = """
-You are CareerMate, a career advisor assistant that routes queries to these agents:
-- Skill Gap Agent: Identifies missing skills given current skills and job target.
-- Job Finder Agent: Finds jobs matching user's skills and location.
-- Course Recommender Agent: Recommends courses for missing skills.
+    You are CareerMate, a career advisor assistant that routes queries to these agents:
+    - Skill Gap Agent: Identifies missing skills given current skills and job target.
+    - Job Finder Agent: Finds jobs matching user's skills and location.
+    - Course Recommender Agent: Recommends courses for missing skills.
 
-Carefully choose which agent to use based on user's request.
-Respond only with the output of the selected agent, not explanations.
-""",
+    Carefully choose which agent to use based on user's request.
+    Respond only with the output of the selected agent, not explanations.
+    """,
     model=OpenAIChatCompletionsModel(model=MODEL_NAME, openai_client=client),
     handoffs=[skill_gap_agent, job_finder_agent, course_recommender_agent],
     output_type=None,
