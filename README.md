@@ -34,9 +34,9 @@ venv\Scripts\activate
 5. Create a `.env` file with your OpenAI API key:
 
 ```
-BASE_URL="https://api.openai.com/v1"
-API_KEY="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"  
-MODEL_NAME="gpt-4o"
+BASE_URL="https://models.github.ai/inference/v1"
+API_KEY=
+MODEL_NAME="openai/gpt-4.1-nano"
 
 ```
 
